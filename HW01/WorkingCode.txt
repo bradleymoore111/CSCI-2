@@ -1,0 +1,78 @@
+#include <iostream>
+
+using namespace std;
+
+struct MonthlyBudget {
+	double housing;
+	double utilities;
+	double householdExpenses;
+	double transportation;
+	double food;
+	double medication;
+	double insurance;
+	double entertainment;
+	double clothing;
+	double misc;
+};
+
+MonthlyBudget getUserData();
+void showErrors(MonthlyBudget actual, MonthlyBudget ideal);
+
+int main() {
+	MonthlyBudget budget = getUserData();
+
+	MonthlyBudget ideal = { 500.0, 150.0, 65.0, 50.0, 250.0, 30.0, 100.0, 150.0, 75.0, 50.0 };
+
+	showErrors(budget, ideal);
+
+	return 0;
+}
+
+MonthlyBudget getUserData() {
+	MonthlyBudget budget;
+	cout << "Welcome to the MonthlyBudget program. Please enter for each category, how much you spent this month (as compared to how much you're supposed to be spending)." << endl;
+	cout << "Expenses for this month:" << endl;
+	cout << "\tHousing: ";
+	cin >> budget.housing;
+	cout << "\tUtilities: ";
+	cin >> budget.utilities;
+	cout << "\tHousehold Expenses: ";
+	cin >> budget.householdExpenses;
+	cout << "\tTransportation: ";
+	cin >> budget.transportation;
+	cout << "\tFood: ";
+	cin >> budget.food;
+	cout << "\tMedication: ";
+	cin >> budget.medication;
+	cout << "\tInsurance: ";
+	cin >> budget.insurance;
+	cout << "\tEntertainment: ";
+	cin >> budget.entertainment;
+	cout << "\tClothing: ";
+	cin >> budget.clothing;
+	cout << "\tMISC: ";
+	cin >> budget.misc;
+
+	return budget;
+}
+
+void showErrors(MonthlyBudget a, MonthlyBudget i) {
+	cout << "Discrepencies in the monthly budget. Positive numbers represent spare assets, while negative numbers represent overspending." << endl;
+	cout << "Housing: $" << i.housing - a.housing << endl;
+	cout << "Utilities: $" << i.utilities - a.utilities << endl;
+	cout << "Household Expenses: $" << i.householdExpenses - a.householdExpenses << endl;
+	cout << "Transportation: $" << i.transportation - a.transportation << endl;
+	cout << "Food: $" << i.food - a.food << endl;
+	cout << "Medication: $" << i.medication - a.medication << endl;
+	cout << "Insurance: $" << i.insurance - a.insurance << endl;
+	cout << "Entertainment: $" << i.entertainment - a.entertainment << endl;
+	cout << "Clothing: $" << i.clothing - a.clothing << endl;
+	cout << "MISC: $" << i.misc - a.misc << endl;
+
+	cout << endl;
+	cout << "Discrepencies for the entire monthly budget:" << endl;
+	double sumActual = a.housing + a.utilities + a.householdExpenses + a.transportation + a.food + a.medication + a.insurance + a.entertainment + a.clothing + a.misc;
+	double sumIdeal = i.housing + i.utilities + i.householdExpenses + i.transportation + i.food + i.medication + i.insurance + i.entertainment + i.clothing + i.misc;
+
+	cout << "$" << sumIdeal - sumActual << endl;
+}
